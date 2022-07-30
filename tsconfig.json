@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "sourceMap": true,
+    "watch": false,
+    "declaration": true,
+    "declarationDir": "definitions",
+    "strictNullChecks": true,
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noFallthroughCasesInSwitch": true,
+    "outDir": "build",
+    "rootDir": "src",
+    "baseUrl": "./",
+    "paths": {
+      "*":  ["node_modules/dreamteam-core/typings/*"]
+    },
+    "typeRoots": [
+      "node_modules/dreamteam-core/typings",
+      "node_modules/@types"
+    ],
+    "types": [
+      "ethereum"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "**/*.pem",
+    "**/*.key"
+  ]
+}
