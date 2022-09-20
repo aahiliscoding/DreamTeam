@@ -7,6 +7,10 @@ interface LogQueue {
   [blockHash: string]: Array<FormattedEventLog>;
 }
 
+interface HandleQueue {
+  [ipfsQueeue: string]: string;
+}
+
 interface BlockQueue {
   [blockHash: string]: BlockDetail;
 }
