@@ -1,5 +1,6 @@
 import * as Knex from "knex";
 import * as IPFS from "ipfs";
+import OrbitDB from "orbit-db";
 
 export function createSearchProvider(db: Knex): SearchProvider | null {
   switch (db.client.config.client) {
