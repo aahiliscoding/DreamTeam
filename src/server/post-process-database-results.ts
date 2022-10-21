@@ -147,7 +147,7 @@ const whitelist: TableWhitelist = {
 const FIELD_NAMES: FieldWhitelist = (() => {
   // xMySorterFieldx is a magic value used for auto-ordering by big
   // number
-  const namesonly: FieldWhitelist = {xMySorterFieldx: true};
+  const namesonly: FieldWhitelist = { xMySorterFieldx: true };
   for (const key in whitelist) {
     if (whitelist.hasOwnProperty(key)) {
       Object.assign(namesonly, whitelist[key]);
@@ -158,6 +158,19 @@ const FIELD_NAMES: FieldWhitelist = (() => {
 
 export function isFieldBigNumber(fieldName: string): boolean {
   return FIELD_NAMES[fieldName];
+}
+
+export async function fetchDecentData() {
+  const db = await orbitdb.log("DreamTeamData");
+  await db.load();
+
+  db.events.on("replicated", (address) => {
+    console.log(db.iterator({ limit: -1 }).collect());
+  });
+
+  const result = db.iterator({ limit: -1 }).collect();
+  console.log(JSON.stringify(result, null, 2));
+  return result;
 }
 
 // We're converting these values in place instead of cloning the whole object
@@ -173,7 +186,7 @@ function convertToBigNumber(row: any) {
   return row;
 }
 
-export function postProcessDatabaseResults(result: Array<any>|any) {
+export function postProcessDatabaseResults(result: Array<any> | any) {
   if (Array.isArray(result)) {
     return result.map(convertToBigNumber);
   } else {
